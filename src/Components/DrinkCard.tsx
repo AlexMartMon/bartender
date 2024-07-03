@@ -1,0 +1,29 @@
+import { useAppStore } from "../Stores/useAppStore";
+import { Drink } from "../Types/Index";
+
+type DrinkCardProps = {
+  drink: Drink;
+};
+
+export default function DrinkCard({ drink }: DrinkCardProps) {
+  const selectRecipe = useAppStore((state) => state.selectRecipe)
+
+
+  return (
+    <div className="border shadow-lg">
+      <div className="overflow-hidden">
+        <img className="hover:scale-125 transition-transform hover:rotate-2" src={drink.strDrinkThumb} alt={`Image of ${drink.strDrink}`} />
+      </div>
+      <div className="p5">
+        <h2 className="text-2xl truncate font-black">{drink.strDrink}</h2>
+        <button
+          type="button"
+          className="bg-orange-400 hover:bg-orange-500 mt-5 w-full p-3 font-bold text-white text-lg"
+          onClick={() => selectRecipe(drink.idDrink)}
+       >
+          Show Recipe
+        </button>
+      </div>
+    </div>
+  );
+}
